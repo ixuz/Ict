@@ -4,20 +4,22 @@ import java.io.FileInputStream;
 
 public class Properties {
 
-    String host = "localhost";
-    int port = 14265;
-    int roundDuration = 60000; // In milliseconds
-    int minEchoDelay = 0, maxEchoDelay = 5000; // In milliseconds
+    private String host = "localhost";
+    private int port = 14265;
+    private int roundDuration = 60000; // In milliseconds
+    private int minEchoDelay = 0, maxEchoDelay = 5000; // In milliseconds
+    private long timestampLowerBoundDelta = 90, timestampUpperBoundDelta = 90; // In seconds
+    private String neighborAHost = "1.1.1.1";
+    private String neighborBHost = "2.2.2.2";
+    private String neighborCHost = "3.3.3.3";
+    private int neighborAPort = 14265;
+    private int neighborBPort = 14265;
+    private int neighborCPort = 14265;
 
-    long timestampLowerBoundDelta = 90, timestampUpperBoundDelta = 90; // In seconds
-
-    String neighborAHost, neighborBHost, neighborCHost;
-    int neighborAPort, neighborBPort, neighborCPort;
-
-    Properties() {
+    public Properties() {
     }
 
-    Properties(final String fileName) {
+    public Properties(final String fileName) {
 
         final java.util.Properties properties = new java.util.Properties();
 
@@ -45,5 +47,70 @@ public class Properties {
         neighborBPort = Integer.parseInt(properties.getProperty("neighborBPort").trim ());
         neighborCHost = properties.getProperty("neighborCHost").trim ();
         neighborCPort = Integer.parseInt(properties.getProperty("neighborCPort").trim ());
+    }
+
+    public String getHost() {
+
+        return host;
+    }
+
+    public int getPort() {
+
+        return port;
+    }
+
+    public int getRoundDuration() {
+
+        return roundDuration;
+    }
+
+    public int getMinEchoDelay() {
+
+        return minEchoDelay;
+    }
+
+    public int getMaxEchoDelay() {
+
+        return maxEchoDelay;
+    }
+
+    public long getTimestampLowerBoundDelta() {
+
+        return timestampLowerBoundDelta;
+    }
+
+    public long getTimestampUpperBoundDelta() {
+
+        return timestampUpperBoundDelta;
+    }
+
+    public String getNeighborAHost() {
+
+        return neighborAHost;
+    }
+
+    public String getNeighborBHost() {
+
+        return neighborBHost;
+    }
+
+    public String getNeighborCHost() {
+
+        return neighborCHost;
+    }
+
+    public int getNeighborAPort() {
+
+        return neighborAPort;
+    }
+
+    public int getNeighborBPort() {
+
+        return neighborBPort;
+    }
+
+    public int getNeighborCPort() {
+
+        return neighborCPort;
     }
 }

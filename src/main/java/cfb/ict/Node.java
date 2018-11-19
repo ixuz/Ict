@@ -45,13 +45,13 @@ public class Node {
 
         phase = RUNNING;
 
-        neighbors.add(new Neighbor(properties.neighborAHost, properties.neighborAPort));
-        neighbors.add(new Neighbor(properties.neighborBHost, properties.neighborBPort));
-        neighbors.add(new Neighbor(properties.neighborCHost, properties.neighborCPort));
+        neighbors.add(new Neighbor(properties.getNeighborAHost(), properties.getNeighborAPort()));
+        neighbors.add(new Neighbor(properties.getNeighborBHost(), properties.getNeighborBPort()));
+        neighbors.add(new Neighbor(properties.getNeighborCHost(), properties.getNeighborCPort()));
 
         try {
 
-            socket = new DatagramSocket(properties.port, InetAddress.getByName(properties.host));
+            socket = new DatagramSocket(properties.getPort(), InetAddress.getByName(properties.getHost()));
 
         } catch (final Exception e) {
 
@@ -129,7 +129,7 @@ public class Node {
                 long roundBeginningTime = 0;
                 while (phase == RUNNING) {
 
-                    if (System.currentTimeMillis() - roundBeginningTime >= properties.roundDuration) {
+                    if (System.currentTimeMillis() - roundBeginningTime >= properties.getRoundDuration()) {
 
                         for (final Neighbor neighbor : neighbors) {
 
@@ -164,7 +164,7 @@ public class Node {
 
                                         neighbor.numberOfNewTransactions++;
 
-                                        envelopes.put(new Envelope(System.currentTimeMillis() + properties.minEchoDelay + ThreadLocalRandom.current().nextLong(properties.maxEchoDelay - properties.minEchoDelay),
+                                        envelopes.put(new Envelope(System.currentTimeMillis() + properties.getMinEchoDelay() + ThreadLocalRandom.current().nextLong(properties.getMaxEchoDelay() - properties.getMinEchoDelay()),
                                                 transaction));
                                     }
 

@@ -10,43 +10,42 @@ public class Utils {
 
     private static final String TRYTES = "9ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final byte[][] TRYTES_TRITS = new byte[][] {
-
-            {0, 0, 0},
-            {1, 0, 0},
-            {-1, 1, 0},
-            {0, 1, 0},
-            {1, 1, 0},
-            {-1, -1, 1},
-            {0, -1, 1},
-            {1, -1, 1},
-            {-1, 0, 1},
-            {0, 0, 1},
-            {1, 0, 1},
-            {-1, 1, 1},
-            {0, 1, 1},
-            {1, 1, 1},
-            {-1, -1, -1},
-            {0, -1, -1},
-            {1, -1, -1},
-            {-1, 0, -1},
-            {0, 0, -1},
-            {1, 0, -1},
-            {-1, 1, -1},
-            {0, 1, -1},
-            {1, 1, -1},
-            {-1, -1, 0},
-            {0, -1, 0},
-            {1, -1, 0},
-            {-1, 0, 0}
+        {0, 0, 0},
+        {1, 0, 0},
+        {-1, 1, 0},
+        {0, 1, 0},
+        {1, 1, 0},
+        {-1, -1, 1},
+        {0, -1, 1},
+        {1, -1, 1},
+        {-1, 0, 1},
+        {0, 0, 1},
+        {1, 0, 1},
+        {-1, 1, 1},
+        {0, 1, 1},
+        {1, 1, 1},
+        {-1, -1, -1},
+        {0, -1, -1},
+        {1, -1, -1},
+        {-1, 0, -1},
+        {0, 0, -1},
+        {1, 0, -1},
+        {-1, 1, -1},
+        {0, 1, -1},
+        {1, 1, -1},
+        {-1, -1, 0},
+        {0, -1, 0},
+        {1, -1, 0},
+        {-1, 0, 0}
     };
 
-    static void log(final String message) {
+    public static void log(final String message) {
 
         System.out.println((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new Date(System.currentTimeMillis()))
                 + ": " + message);
     }
 
-    static String trytes(final byte[] trits, final int offset, final int length) { // length must be a multiple of 3
+    public static String trytes(final byte[] trits, final int offset, final int length) { // length must be a multiple of 3
 
         final StringBuilder trytes = new StringBuilder();
 
@@ -63,7 +62,7 @@ public class Utils {
         return trytes.toString();
     }
 
-    static byte[] trits(final String trytes) {
+    public static byte[] trits(final String trytes) {
 
         final byte[] trits = new byte[trytes.length() * 3];
 
@@ -75,19 +74,19 @@ public class Utils {
         return trits;
     }
 
-    static void convertTritsToBytesTrinary(final byte[] trits, int tritsOffset, int tritsLength, // tritsLength must be a multiple of 81
+    public static void convertTritsToBytesTrinary(final byte[] trits, int tritsOffset, int tritsLength, // tritsLength must be a multiple of 81
                                            final byte[] bytes, final int bytesOffset) {
 
         // TODO: Implement 16-bytes-fit-81-trits encoding
     }
 
-    static void convertBytesToTritsTrinary(final byte[] bytes, final int bytesOffset, int bytesLength, // bytesLength must be a multiple of 16
+    public static void convertBytesToTritsTrinary(final byte[] bytes, final int bytesOffset, int bytesLength, // bytesLength must be a multiple of 16
                                            final byte[] trits, int tritsOffset) {
 
         // TODO: Implement 16-bytes-fit-81-trits encoding
     }
 
-    static void convertTritsToBytesBinary(final byte[] trits, int tritsOffset, int tritsLength, // tritsLength must be a multiple of 9
+    public static void convertTritsToBytesBinary(final byte[] trits, int tritsOffset, int tritsLength, // tritsLength must be a multiple of 9
                                           final byte[] bytes, final int bytesOffset) {
 
         final ByteBuffer bytesBuffer = (ByteBuffer) ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).position(bytesOffset);
@@ -107,7 +106,7 @@ public class Utils {
         } while ((tritsLength -= 9) > 0);
     }
 
-    static void convertBytesToTritsBinary(final byte[] bytes, final int bytesOffset, int bytesLength, // bytesLength must be a multiple of 2
+    public static void convertBytesToTritsBinary(final byte[] bytes, final int bytesOffset, int bytesLength, // bytesLength must be a multiple of 2
                                           final byte[] trits, int tritsOffset) {
 
         final ByteBuffer bytesBuffer = (ByteBuffer) ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).position(bytesOffset);
@@ -132,17 +131,17 @@ public class Utils {
         } while ((bytesLength -= 2) > 0);
     }
 
-    static int sizeInBytesBinary(final int lengthInTrits) { // lengthInTrits must be a multiple of 9
+    public static int sizeInBytesBinary(final int lengthInTrits) { // lengthInTrits must be a multiple of 9
 
         return (lengthInTrits / 9) * 2;
     }
 
-    static int lengthInTritsBinary(final int sizeInBytes) { // sizeInBytes must be a multiple of 2
+    public static int lengthInTritsBinary(final int sizeInBytes) { // sizeInBytes must be a multiple of 2
 
         return (sizeInBytes / 2) * 9;
     }
 
-    static BigInteger value(final byte[] trits, final int offset, final int length) {
+    public static BigInteger value(final byte[] trits, final int offset, final int length) {
 
         BigInteger value = BigInteger.ZERO;
 
@@ -154,7 +153,7 @@ public class Utils {
         return value;
     }
 
-    static byte[] trits(final BigInteger value, final int length) {
+    public static byte[] trits(final BigInteger value, final int length) {
 
         final byte[] trits = new byte[length];
 
